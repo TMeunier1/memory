@@ -1,10 +1,21 @@
 .card {
-    width: 25%;
-    display: inline-block;;
+    width: 20%;
+    display: inline-block;
     height: 300px;
     border: solid 1px blue;
     background-color: pink;
     font-size: 4em;
     text-align: center;
     color: black;
-};
+    margin : 5px;
+    border-radius: 25px;
+}
+.cache{
+    width: 20%;
+    display: inline-block;
+    height: 300px;
+    border: solid 1px blue;
+    background-color: black;
+    margin : 5px;
+    border-radius: 25px;
+}
