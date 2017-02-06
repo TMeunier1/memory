@@ -16,6 +16,8 @@
     height: 300px;
     border: solid 1px blue;
     background-color: black;
+    font-size: 4em;
+    text-align: center;
     margin : 5px;
     border-radius: 25px;
 }
