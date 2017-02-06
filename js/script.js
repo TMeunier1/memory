@@ -1,6 +1,7 @@
 var nombreDeCarte = "12";
 var board = document.getElementById("board");
-var carte
+var carte;
+var carte2 = null;
 
 
 for (var i = 1; i <= nombreDeCarte/2; i++) {
@@ -13,11 +14,18 @@ for (var i = 1; i <= nombreDeCarte/2; i++) {
     carte.addEventListener("click", function() {
             if (this.className == "cache") {
                 this.className = "card";
+                if (carte2 == null) {
+                    carte2 = this;
+                }
+                else {
+                    if (carte2.innerHTML != this.innerHTML) {
+                        this.className = "cache";
+                        carte2.className = "cache";
+                    }
+                    carte2 = null;
+                }
             }
 
-            else {
-                this.className = "cache";
-            }
     });
 
     carte = document.createElement("div");
@@ -28,10 +36,18 @@ for (var i = 1; i <= nombreDeCarte/2; i++) {
     carte.addEventListener("click", function() {
             if (this.className == "cache") {
                 this.className = "card";
+                if (carte2 == null) {
+                    carte2 = this;
+                }
+                else {
+                    if (carte2.innerHTML != this.innerHTML) {
+                        this.className = "cache";
+                        carte2.className = "cache";
+                    }
+                    carte2 = null;
+                }
             }
 
-            else {
-                this.className = "cache";
-            }
+
     });
 };
