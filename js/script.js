@@ -1,62 +1,42 @@
-var nombreDeCarte = "12";
+var nombreDeCarte = 12;
 var board = document.getElementById("board");
 var carte;
-var carte2 = null;
-var div2 = "";
-var divtexte = "";
+var carteRetournee1 = null;
+var carteRetournee2 = null;
 
 
-for (var i = 1; i <= nombreDeCarte/2; i++) {
 
-    carte = document.createElement("div");
-    carte.className="cache";
-    divtexte = document.createElement("div");
-    board.appendChild(divtexte);
-    divtexte.className = "card";
-    divtexte = i;
-    board.appendChild(carte);
+for (var i = 0; i < nombreDeCarte/2; i++) {
+    for (var j = 0; j < 2; j++) {
+        carte = document.createElement("div");
+        carte.className="card";
+        var cardValue = document.createElement("div");
+        carte.appendChild(cardValue);
+        cardValue.innerHTML = i;
+        var divcache = document.createElement("div");
+        divcache.className = "cache";
 
-    carte.addEventListener("click", function() {
-            if (this.className == "cache") {
-                this.className = "card";
-                if (carte2 == null) {
-                    carte2 = this;
+        carte.appendChild(divcache);
+        board.appendChild(carte);
+
+        divcache.addEventListener("click", function() {
+            if (carteRetournee1 == null) {
+                carteRetournee1 = this;
+            }
+            else if (carteRetournee2 == null) {
+                carteRetournee2 = this;
+            }
+            else {
+                carteRetournee1.style.display = "block";
+                carteRetournee2.style.display = "block";
+                carteRetournee1 = this;
+                carteRetournee2 = null;
+                if (carteRetournee1.previousSibling.innerHTML == carteRetournee2.previousSibling.innerHTML) {
                 }
-                else {
-                    if (carte2.innerHTML != this.innerHTML) {
-                        this.className = "cache";
-                        carte2.className = "cache";
-                    }
-                    carte2 = null;
-                }
+
             }
 
-    });
-
-    carte = document.createElement("div");
-    carte.className="cache";
-    carte.innerHTML = i;
-    board.appendChild(carte);
-    divtexte = document.createElement("div");
-    board.appendChild(divtexte);
-    divtexte.className = "card";
-    divtexte = i;
-
-    carte.addEventListener("click", function() {
-            if (this.className == "cache") {
-                this.className = "card";
-                if (carte2 == null) {
-                    carte2 = this;
-                }
-                else {
-                    if (carte2.innerHTML != this.innerHTML) {
-                        this.className = "cache";
-                        carte2.className = "cache";
-                    }
-                    carte2 = null;
-                }
-            }
-
-
-    });
+            this.style.display = "none";
+        });
+    }
 };

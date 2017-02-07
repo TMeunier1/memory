@@ -13,15 +13,12 @@
 
 }
 .cache{
-    width: 20%;
+    width: 100%;
     display: inline-block;
-    height: 300px;
-    border: solid 1px blue;
+    height: 100%;
     background-color: black;
-    font-size: 4em;
-    text-align: center;
-    margin : 5px;
-    border-radius: 25px;
     position: absolute;
-
+    border-radius: 25px;
+    top: 0;
+    left: 0;
 }
