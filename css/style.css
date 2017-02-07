@@ -9,6 +9,8 @@
     color: black;
     margin : 5px;
     border-radius: 25px;
+    position: relative;
+
 }
 .cache{
     width: 20%;
@@ -20,4 +22,6 @@
     text-align: center;
     margin : 5px;
     border-radius: 25px;
+    position: absolute;
+
 }
