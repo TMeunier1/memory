@@ -27,12 +27,13 @@ for (var i = 0; i < nombreDeCarte/2; i++) {
                 carteRetournee2 = this;
             }
             else {
-                carteRetournee1.style.display = "block";
-                carteRetournee2.style.display = "block";
+                if (carteRetournee1.previousSibling.innerHTML != carteRetournee2.previousSibling.innerHTML) {
+                    carteRetournee1.style.display = "block";
+                    carteRetournee2.style.display = "block";
+                }
+
                 carteRetournee1 = this;
                 carteRetournee2 = null;
-                if (carteRetournee1.previousSibling.innerHTML == carteRetournee2.previousSibling.innerHTML) {
-                }
 
             }
 
