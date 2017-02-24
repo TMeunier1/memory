@@ -1,14 +1,53 @@
 <!doctype html>
 <html lang="fr">
-   <head>
-       <meta charset="utf-8">
-       <title>Titre de la page</title>
-       <link rel="stylesheet" href="./css/style.css">
-   </head>
-   <body>
-       <section id="board">
+<head>
+   <meta charset="utf-8">
+   <title>Titre de la page</title>
+   <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+   <section id="board">
 
-       </section>
-   </body>
-   <script src="./js/script.js"></script>
+   </section>
+</body>
+<script src="../jquery-2.2.4.js"></script>
+    <script>
+
+    $(document).ready(function() {
+        var nombreDeCarte = 12;
+        var board = $("#board");
+        var carteRetournee1 = null;
+        var carteRetournee2 = null;
+
+        for (var i = 0; i < nombreDeCarte/2; i++) {
+            for (var j = 0; j < 2; j++) {
+                var carte = $("<div class='card'></div>");
+                var cardValue = $("<div>"+i+"</div>");
+                var divcache = $("<div class='cache'></div>")
+
+                carte.append(cardValue);
+                carte.append(divcache);
+                board.append(carte);
+
+                divcache.click(function() {
+                    if (carteRetournee1 == null) {
+                        carteRetournee1 = $(this);
+                    }
+                    else if (carteRetournee2 == null) {
+                        carteRetournee2 =  $(this);
+                    }
+                    else {
+                        if (carteRetournee1.prev().html() != carteRetournee2.prev().html()) {
+                            carteRetournee1.show();
+                            carteRetournee2.show();
+                        }
+                        carteRetournee1 = $(this);
+                        carteRetournee2 = null;
+                    }
+                    $(this).hide();
+                });
+            }
+        }
+    });
+    </script>
 </html>
