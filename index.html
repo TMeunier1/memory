@@ -19,42 +19,61 @@
         var board = $("#board");
         var carteTournee1 = null;
         var carteTournee2 = null;
+        var inputNbr = $("<input placeholder='Nombre de cartes'></input>");
+        var buttonNbr = $("<button>Générer cartes</button>");
+        var spanScore = $("<span>Score : </span>");
+        var points = 0;
+        inputNbr.appendTo(board);
+        inputNbr.css("display", "block");
+        buttonNbr.appendTo(board);
+        buttonNbr.css("display", "block");
+        spanScore.appendTo(board);
+        spanScore.css("display", "block");
 
-        for (var i = 0; i < nombreDeCarte / 2; i++) {
-            for (var j = 0; j < 2; j++) {
-                var carte = $("<div class='card'></div>");
-                var cardValue = $("<div>" + i + "</div>");
-                carte.attr("id", i);
-                var divcache = $("<div class='cache'></div>");
+        buttonNbr.click(function() {
+            for (var i = 0; i < inputNbr.val() / 2; i++) {
+                for (var j = 0; j < 2; j++) {
+                    var carte = $("<div class='card'></div>");
+                    var cardValue = $("<div>" + i + "</div>");
+                    carte.attr("id", i);
+                    var divcache = $("<div class='cache'></div>");
 
-                carte.append(cardValue);
-                carte.append(divcache);
-                board.append(carte);
+                    carte.append(cardValue);
+                    carte.append(divcache);
+                    board.append(carte);
 
-                divcache.click(function() {
-                    if (carteTournee1 == null) {
-                        carteTournee1 = $(this);
-                    } else if (carteTournee2 == null) {
-                        carteTournee2 = $(this);
-                    } else {
-                        if (carteTournee1.prev().html() != carteTournee2.prev().html()) {
-                            carteTournee1.show();
-                            carteTournee2.show();
+                    divcache.click(function() {
+                        if (carteTournee1 == null) {
+                            carteTournee1 = $(this);
+                        } else if (carteTournee2 == null) {
+                            carteTournee2 = $(this);
+                            if (carteTournee1.prev().html() == carteTournee2.prev().html()) {
+                                points = points + 5;
+                                spanScore.html("Score : " + points);
+                            }
                         }
-                        carteTournee1 = $(this);
-                        carteTournee2 = null;
-                    }
-                    $(this).hide();
-                });
+                         else {
+                            if (carteTournee1.prev().html() != carteTournee2.prev().html()) {
+                                carteTournee1.show();
+                                carteTournee2.show();
+                                points = points - 5;
+                                spanScore.html("Score : " + points);
+                            }
+                            carteTournee1 = $(this);
+                            carteTournee2 = null;
+                        }
+                        $(this).hide();
+                    });
+                }
             }
-        }
-        var cards = $(".card");
-        for (var i = 0; i < cards.length; i++) {
-            var target = Math.floor(Math.random() * cards.length - 1) + 1;
-            var target2 = Math.floor(Math.random() * cards.length - 1) + 1;
-            var target3 = Math.floor(Math.random() * cards.length - 1) + 1;
-            cards.eq(target).before(cards.eq(target2)).before(cards.eq(target3));
-        }
+            var cards = $(".card");
+            for (var i = 0; i < cards.length; i++) {
+                var target = Math.floor(Math.random() * cards.length - 1) + 1;
+                var target2 = Math.floor(Math.random() * cards.length - 1) + 1;
+                var target3 = Math.floor(Math.random() * cards.length - 1) + 1;
+                cards.eq(target).before(cards.eq(target2)).before(cards.eq(target3));
+            }
+        });
     });
 </script>
 
